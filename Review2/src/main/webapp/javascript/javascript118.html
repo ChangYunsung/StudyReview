@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//색 배열 선언
+var colors = ["orange", "silver", "blue"];
+//현재 상자는 배열에서 0 번째
+var pos = 0;
+
+function test(stat){
+	console.log(stat)
+	//HTML에서 id값 box를 가져옴
+	var box = document.getElementById("box");
+	switch(stat){
+	case "click" :
+		pos ++;
+		if(pos==colors.length){
+			//마지막까지 클릭했을 때 다시 0으로 초기화
+			pos = 0;
+		}
+		//클릭할 때 마다 색상이 변함
+		box.style.backgroundColor = colors[pos];
+		break;
+	//마우스를 올릴 때 마다 테두리 생성
+	case "mouseover" : 
+		box.style.outline = "3px solid rgba(225, 70, 70, 0, 4)";
+		break;
+	case "dblclick" :
+		//더블 클릭 시 width 출력
+		console.log (box.clientWidth);
+		//더블 클릭 시 가로 50 px시 증가
+		box.style.width = box.clientWidth + 50 + "px";
+		break;
+	}
+}
+
+</script>
+
+<style type = "text/css">
+#box{
+	display : inline-block;
+	width : 150px;
+	height : 150px;
+	background-color: orange;
+}
+</style>
+</head>
+
+<body>
+<body onkeydown="testKey(event);">
+<div id="box"
+	onclick = "test('click');"
+	onmouseover = "test('mouseover');"
+	onmouseout = "test('mouseout');"
+	ondblclick = "test('dblclick');">
+</div>
+</body>
+</html>
